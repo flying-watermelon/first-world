@@ -1,0 +1,13 @@
+using System.Numerics;
+
+namespace FirstWorld.Model
+{
+    public class Plant
+    {
+        public Vector3 Position { set; get; }
+        public ulong Age { set; get; }
+        public ulong BreedingAge { set; get; }
+        public ulong BreedingPeriod { set; get; }
+        public float SeedSpreadingRadius { set; get; }
+    }
+}
