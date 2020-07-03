@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace first_world
+namespace FirstWorld
 {
     class Program
     {
