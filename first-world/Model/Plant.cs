@@ -2,7 +2,7 @@ using System.Numerics;
 
 namespace FirstWorld.Model
 {
-    public class Plant
+    public class Plant : IObject
     {
         public Vector3 Position { set; get; }
         public ulong Age { set; get; }
