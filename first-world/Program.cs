@@ -1,4 +1,6 @@
 ﻿using System;
+using FirstWorld.Logic;
+using FirstWorld.Model;
 
 namespace FirstWorld
 {
@@ -6,7 +8,16 @@ namespace FirstWorld
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            IObject exampleObj = new Plant();
+            (exampleObj as Plant).Age = 0;
+
+            ILaw exampleLaw = new Aging();
+            if (exampleLaw.CanApply(exampleObj))
+            {
+                exampleLaw.Apply(exampleObj);
+            }
+
+            Console.WriteLine((exampleObj as Plant).Age);
         }
     }
 }
