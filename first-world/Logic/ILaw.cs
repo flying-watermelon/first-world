@@ -4,7 +4,7 @@ namespace FirstWorld.Logic
 {
     public interface ILaw
     {
-        bool CanApply(IObject obj);
-        void Apply(IObject obj);
+        bool CanApply(IObject obj, World world);
+        void Apply(IObject obj, World world);
     }
 }

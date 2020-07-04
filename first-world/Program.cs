@@ -8,16 +8,18 @@ namespace FirstWorld
     {
         static void Main(string[] args)
         {
-            IObject exampleObj = new Plant();
-            (exampleObj as Plant).Age = 0;
+            World world = new World();
 
-            ILaw exampleLaw = new Aging();
-            if (exampleLaw.CanApply(exampleObj))
-            {
-                exampleLaw.Apply(exampleObj);
-            }
+            Plant firstPlant = new Plant();
+            firstPlant.Age = 0;
+            world.Objects.Add(firstPlant);
 
-            Console.WriteLine((exampleObj as Plant).Age);
+            Aging aging = new Aging();
+            world.Laws.Add(aging);
+
+            world.Start();
+
+            Console.WriteLine(firstPlant.Age);
         }
     }
 }
