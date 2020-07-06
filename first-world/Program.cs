@@ -10,15 +10,22 @@ namespace FirstWorld
         {
             World world = new World();
             Plant firstPlant = new Plant();
-            firstPlant.Age = 0;
-            firstPlant.LifeMax=1000;
-            world.Objects.Add(firstPlant);
-
+ 
             Aging aging = new Aging();
+            Breeding breeding =new Breeding();
             world.Laws.Add(aging);
+            //world.Laws.Add(breeding);  TODO error
+
+            firstPlant.Age = 0;
+            firstPlant.BreedingAge =50;
+            firstPlant.BreedingPeriod=5;
+            firstPlant.LifeMax=1000;
+            firstPlant.BreedingFactor=1;
+            world.Objects.Add(firstPlant);
 
             world.Start();
             Console.WriteLine(firstPlant.Age);
+            Console.WriteLine(world.Objects.Count);
         }
     }
 }

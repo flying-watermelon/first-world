@@ -13,6 +13,7 @@ namespace FirstWorld
         {
             Objects = new List<IObject>();
             Laws = new List<ILaw>();
+
         }
 
         public void Start()
