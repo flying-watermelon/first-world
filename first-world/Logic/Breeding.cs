@@ -19,10 +19,10 @@ namespace FirstWorld.Logic
             {
                 var rand = new Random();
                 float randomValue = Convert.ToSingle(rand.NextDouble());
-                int N_breed_max =(int)((plant.Age-plant.BreedingAge)/plant.BreedingPeriod)+1;
-                var rand_breed =new Random();
-                int N_breed =rand_breed.Next(0,N_breed_max);
-                for (int i = 0; i < N_breed; i++)
+                int breedMaxValue =(int)((plant.Age-plant.BreedingAge)/plant.BreedingPeriod)+1;
+                var randBreed =new Random();
+                int breedValue =randBreed.Next(0,breedMaxValue);
+                for (int i = 0; i < breedValue; i++)
                 {
                     Plant childPlant = new Plant();
                     childPlant.Age = 0;
