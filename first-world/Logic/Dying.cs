@@ -4,18 +4,18 @@ using FirstWorld.Model;
 
 namespace FirstWorld.Logic
 {
-    public class Aging : ILaw
+    public class Dying : ILaw
     {
         public bool CanApply(IObject obj, World world)
         {
-            return obj is Plant;
+            return (obj is Plant plant)&&(plant.Age >plant.LifeMax);
         }
 
         public void Apply(IObject obj, World world)
         {
             if (obj is Plant plant)
             {
-                plant.Age++;
+                    world.Objects.Remove(plant);
             }
         }
     }
