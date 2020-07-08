@@ -4,6 +4,7 @@ namespace FirstWorld.Model
 {
     public class Animal : IObject
     {
+        public Vector3 Position{set; get;}
         public ulong Age{set; get;}
         public ulong LifeMax{set; get;}
         public float BreedingFactor{set; get;}
