@@ -8,14 +8,14 @@ namespace FirstWorld.Logic
     {
         public bool CanApply(IObject obj, World world)
         {
-            return (obj is Plant plant)&&(plant.Age >plant.LifeMax);
+            return (obj is Plant plant) && (plant.Age > plant.LifeMax);
         }
 
         public void Apply(IObject obj, World world)
         {
             if (obj is Plant plant)
             {
-                    world.Objects.Remove(plant);
+                world.Objects.Remove(plant);
             }
         }
     }

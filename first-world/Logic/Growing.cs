@@ -1,10 +1,8 @@
-using System;
-using System.Numerics;
 using FirstWorld.Model;
 
 namespace FirstWorld.Logic
 {
-    public class Aging : ILaw
+    public class Growing : ILaw
     {
         public bool CanApply(IObject obj, World world)
         {

@@ -8,19 +8,19 @@ namespace FirstWorld
     {
         static void Main(string[] args)
         {
-            World world=new World();
-            Plant firstPlant=new Plant();
- 
-            Aging aging=new Aging();
-            Breeding breeding=new Breeding();
+            World world = new World();
+            Plant firstPlant = new Plant();
+
+            Growing aging = new Growing();
+            Breeding breeding = new Breeding();
             world.Laws.Add(aging);
             //world.Laws.Add(breeding);  TODO error
 
-            firstPlant.Age=0;
-            firstPlant.BreedingAge=50;
-            firstPlant.BreedingPeriod=5;
-            firstPlant.LifeMax=1000;
-            firstPlant.BreedingFactor=1;
+            firstPlant.Age = 0;
+            firstPlant.BreedingAge = 50;
+            firstPlant.BreedingPeriod = 5;
+            firstPlant.LifeMax = 1000;
+            firstPlant.BreedingFactor = 1;
             world.Objects.Add(firstPlant);
 
             world.Start();
