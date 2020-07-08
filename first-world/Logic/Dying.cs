@@ -1,5 +1,3 @@
-using System;
-using System.Numerics;
 using FirstWorld.Model;
 
 namespace FirstWorld.Logic
@@ -8,15 +6,12 @@ namespace FirstWorld.Logic
     {
         public bool CanApply(IObject obj, World world)
         {
-            return (obj is Plant plant) && (plant.Age > plant.MaxAge);
+            return (obj is IDieable dieable) && (dieable.Age > dieable.MaxAge);
         }
 
         public void Apply(IObject obj, World world)
         {
-            if (obj is Plant plant)
-            {
-                world.Objects.Remove(plant);
-            }
+            world.Objects.Remove(obj);
         }
     }
 }

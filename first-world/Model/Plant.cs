@@ -1,8 +1,9 @@
 using System.Numerics;
+using FirstWorld.Logic;
 
 namespace FirstWorld.Model
 {
-    public class Plant : IObject
+    public class Plant : IObject, IGrowable, IDieable
     {
         public Vector3 Position { set; get; }
         public long Age { set; get; }
@@ -10,6 +11,6 @@ namespace FirstWorld.Model
         public int MaxBreedingNumber { set; get; }
         public long BreedingAge { set; get; }
         public long BreedingPeriod { set; get; }
-        public float SeedSpreadingRadius { set; get; }
+        public float ChildSpreadingRadius { set; get; }
     }
 }

@@ -22,13 +22,13 @@ namespace FirstWorld.Logic
 
                 for (int i = 0; i < breedNumber; i++)
                 {
-                    float seedPositionAngle = Convert.ToSingle(rand.NextDouble());
+                    float childPositionAngle = Convert.ToSingle(rand.NextDouble());
 
                     Plant childPlant = new Plant();
                     childPlant.Age = 0;
                     childPlant.Position = new Vector3(
-                        (float)(plant.Position.X + Math.Sin(seedPositionAngle) * plant.SeedSpreadingRadius),
-                        (float)(plant.Position.Y + Math.Cos(seedPositionAngle) * plant.SeedSpreadingRadius),
+                        (float)(plant.Position.X + Math.Sin(childPositionAngle) * plant.ChildSpreadingRadius),
+                        (float)(plant.Position.Y + Math.Cos(childPositionAngle) * plant.ChildSpreadingRadius),
                         0.0f);
 
                     world.Objects.Add(childPlant);

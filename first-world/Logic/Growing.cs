@@ -6,15 +6,13 @@ namespace FirstWorld.Logic
     {
         public bool CanApply(IObject obj, World world)
         {
-            return obj is Plant;
+            return obj is IGrowable;
         }
 
         public void Apply(IObject obj, World world)
         {
-            if (obj is Plant plant)
-            {
-                plant.Age++;
-            }
+            IGrowable growable = obj as IGrowable;
+            growable.Age++;
         }
     }
 }
