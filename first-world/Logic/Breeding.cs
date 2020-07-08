@@ -30,6 +30,10 @@ namespace FirstWorld.Logic
                         (float)(plant.Position.X + Math.Sin(childPositionAngle) * plant.ChildSpreadingRadius),
                         (float)(plant.Position.Y + Math.Cos(childPositionAngle) * plant.ChildSpreadingRadius),
                         0.0f);
+                    childPlant.BreedingAge = 50;
+                    childPlant.BreedingPeriod = 25;
+                    childPlant.MaxAge = 101;
+                    childPlant.MaxBreedingNumber = 2;
 
                     world.Objects.Add(childPlant);
                 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using FirstWorld.Logic;
 using FirstWorld.Model;
 
@@ -9,17 +10,20 @@ namespace FirstWorld
         static void Main(string[] args)
         {
             World world = new World();
-            Plant firstPlant = new Plant();
 
             Growing aging = new Growing();
             Breeding breeding = new Breeding();
+            Dying dying = new Dying();
+            world.Laws.Add(dying);
             world.Laws.Add(aging);
-            //world.Laws.Add(breeding);  TODO error
+            world.Laws.Add(breeding);
 
+            Plant firstPlant = new Plant();
+            firstPlant.Position = new Vector3(0.0f, 0.0f, 0.0f);
             firstPlant.Age = 0;
             firstPlant.BreedingAge = 50;
-            firstPlant.BreedingPeriod = 5;
-            firstPlant.MaxAge = 1000;
+            firstPlant.BreedingPeriod = 25;
+            firstPlant.MaxAge = 101;
             firstPlant.MaxBreedingNumber = 2;
             world.Objects.Add(firstPlant);
 

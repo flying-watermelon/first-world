@@ -18,11 +18,15 @@ namespace FirstWorld
 
         public void Start()
         {
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 500; i++)
             {
-                foreach (var obj in Objects)
+                System.Console.WriteLine("Current time: " + i);
+                System.Console.WriteLine("Current object count: " + Objects.Count);
+
+                List<IObject> objectsSnapshot = new List<IObject>(Objects);
+                foreach (IObject obj in objectsSnapshot)
                 {
-                    foreach (var law in Laws)
+                    foreach (ILaw law in Laws)
                     {
                         if (law.CanApply(obj, this))
                         {
