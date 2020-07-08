@@ -19,8 +19,8 @@ namespace FirstWorld
             firstPlant.Age = 0;
             firstPlant.BreedingAge = 50;
             firstPlant.BreedingPeriod = 5;
-            firstPlant.LifeMax = 1000;
-            firstPlant.BreedingFactor = 1;
+            firstPlant.MaxAge = 1000;
+            firstPlant.MaxBreedingNumber = 2;
             world.Objects.Add(firstPlant);
 
             world.Start();
