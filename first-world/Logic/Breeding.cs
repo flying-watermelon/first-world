@@ -46,6 +46,7 @@ namespace FirstWorld.Logic
                     childAnimal.BreedingPeriod = 25;
                     childAnimal.MaxAge = 101;
                     childAnimal.MaxBreedingNumber = 2;
+                    childAnimal.ChildSpreadingRadius = 0.05f;
                 }
             }
         }
