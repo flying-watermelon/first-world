@@ -11,5 +11,6 @@ namespace FirstWorld.Model
         public int MaxBreedingNumber { set; get; }
         public long BreedingAge { set; get; }
         public long BreedingPeriod { set; get; }
+        public float ChildSpreadingRadius { set; get; }
     }
 }

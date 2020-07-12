@@ -8,27 +8,27 @@ namespace FirstWorld.Logic
     {
         public bool CanApply(IObject obj, World world)
         {
-            return (obj is Plant plant)
-                && plant.Age >= plant.BreedingAge
-                && (plant.Age - plant.BreedingAge) % plant.BreedingPeriod == 0;
+            return (obj is IBreedable breedable)
+                && breedable.Age >= breedable.BreedingAge
+                && (breedable.Age - breedable.BreedingAge) % breedable.BreedingPeriod == 0;
         }
 
         public void Apply(IObject obj, World world)
         {
-            if (obj is Plant plant)
+            IBreedable breedable = obj as IBreedable;
+            var rand = new Random();
+            int breedNumber = rand.Next(1, breedable.MaxBreedingNumber + 1);
+
+            for (int i = 0; i < breedNumber; i++)
             {
-                var rand = new Random();
-                int breedNumber = rand.Next(1, plant.MaxBreedingNumber + 1);
-
-                for (int i = 0; i < breedNumber; i++)
+                float childPositionAngle = Convert.ToSingle(rand.NextDouble());
+                if (obj is Plant plant)
                 {
-                    float childPositionAngle = Convert.ToSingle(rand.NextDouble());
-
-                    Plant childPlant = new Plant();
+                    Plant childPlant = new Plant(); 
                     childPlant.Age = 0;
                     childPlant.Position = new Vector3(
-                        (float)(plant.Position.X + Math.Sin(childPositionAngle) * plant.ChildSpreadingRadius),
-                        (float)(plant.Position.Y + Math.Cos(childPositionAngle) * plant.ChildSpreadingRadius),
+                        (float)(breedable.Position.X + Math.Sin(childPositionAngle) * breedable.ChildSpreadingRadius),
+                        (float)(breedable.Position.Y + Math.Cos(childPositionAngle) * breedable.ChildSpreadingRadius),
                         0.0f);
                     childPlant.BreedingAge = 50;
                     childPlant.BreedingPeriod = 25;
@@ -36,6 +36,16 @@ namespace FirstWorld.Logic
                     childPlant.MaxBreedingNumber = 2;
 
                     world.Objects.Add(childPlant);
+                }
+                if (obj is Animal animal)
+                {
+                    Animal childAnimal = new Animal();
+                    childAnimal.Age = 0;
+                    world.Objects.Add(childAnimal);
+                    childAnimal.BreedingAge = 50;
+                    childAnimal.BreedingPeriod = 25;
+                    childAnimal.MaxAge = 101;
+                    childAnimal.MaxBreedingNumber = 2;
                 }
             }
         }
