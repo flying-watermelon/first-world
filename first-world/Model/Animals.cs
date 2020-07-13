@@ -12,5 +12,9 @@ namespace FirstWorld.Model
         public long BreedingAge { set; get; }
         public long BreedingPeriod { set; get; }
         public float ChildSpreadingRadius { set; get; }
+        public IObject Breed(){
+            IObject childAnimal = new Animal();
+            return childAnimal;
+            }
     }
 }
