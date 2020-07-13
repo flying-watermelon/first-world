@@ -1,3 +1,4 @@
+using System.Security.AccessControl;
 using System;
 using System.Numerics;
 using FirstWorld.Model;
@@ -21,33 +22,20 @@ namespace FirstWorld.Logic
 
             for (int i = 0; i < breedNumber; i++)
             {
-                float childPositionAngle = Convert.ToSingle(rand.NextDouble());
-                if (obj is Plant plant)
-                {
-                    Plant childPlant = new Plant(); 
-                    childPlant.Age = 0;
-                    childPlant.Position = new Vector3(
-                        (float)(breedable.Position.X + Math.Sin(childPositionAngle) * breedable.ChildSpreadingRadius),
-                        (float)(breedable.Position.Y + Math.Cos(childPositionAngle) * breedable.ChildSpreadingRadius),
-                        0.0f);
-                    childPlant.BreedingAge = 50;
-                    childPlant.BreedingPeriod = 25;
-                    childPlant.MaxAge = 101;
-                    childPlant.MaxBreedingNumber = 2;
+                IObject childObject = breedable.Breed();
+                world.Objects.Add(childObject);
 
-                    world.Objects.Add(childPlant);
-                }
-                if (obj is Animal animal)
-                {
-                    Animal childAnimal = new Animal();
-                    childAnimal.Age = 0;
-                    world.Objects.Add(childAnimal);
-                    childAnimal.BreedingAge = 50;
-                    childAnimal.BreedingPeriod = 25;
-                    childAnimal.MaxAge = 101;
-                    childAnimal.MaxBreedingNumber = 2;
-                    childAnimal.ChildSpreadingRadius = 0.05f;
-                }
+                float childPositionAngle = Convert.ToSingle(rand.NextDouble());
+                childObject.Age = 0;
+                childObject.Position = new Vector3(
+                    (float)(breedable.Position.X + Math.Sin(childPositionAngle) * breedable.ChildSpreadingRadius),
+                    (float)(breedable.Position.Y + Math.Cos(childPositionAngle) * breedable.ChildSpreadingRadius),
+                    0.0f);
+                childObject.BreedingAge = 50;
+                childObject.BreedingPeriod = 25;
+                childObject.MaxAge = 101;
+                childObject.MaxBreedingNumber = 2;
+                world.Objects.Add(childObject);
             }
         }
     }
