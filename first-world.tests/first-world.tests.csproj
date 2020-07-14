@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>first_world.tests</RootNamespace>
+    <RootNamespace>FirstWorld</RootNamespace>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
