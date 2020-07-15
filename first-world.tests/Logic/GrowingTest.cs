@@ -30,5 +30,15 @@ namespace FirstWorld.Logic
 
             Assert.IsTrue(result, "Growing should be able to handle an object implementing IGrowable.");
         }
+
+        [Test]
+        public void CanNotApply_WithNonIGrowableObject_ReturnsFalse()
+        {
+            IObject nongrowable = new TestNonGrowable();
+
+            bool result = growing.CanApply(nongrowable, null);
+
+            Assert.IsFalse(result, "Growing should not be able to handle an object not implementing IGrowable.");
+        }
     }
 }
