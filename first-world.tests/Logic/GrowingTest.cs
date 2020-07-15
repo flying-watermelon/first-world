@@ -32,16 +32,6 @@ namespace FirstWorld.Logic
         }
 
         [Test]
-        public void Apply_WithIGrowableObject_ReturnsTrue()
-        {
-            TestGrowable growable = new TestGrowable();
-            long AgeBefore = growable.Age;
-            growing.Apply(growable, null);
-            long AgeAfter = growable.Age;
-            Assert.AreEqual(AgeAfter-AgeBefore, 1, "Object implementing IGrowable should add 1 age for every time.");
-        }
-
-        [Test]
         public void CanApply_WithNonIGrowableObject_ReturnsFalse()
         {
             IObject nongrowable = new TestNonGrowable();
@@ -49,6 +39,19 @@ namespace FirstWorld.Logic
             bool result = growing.CanApply(nongrowable, null);
 
             Assert.IsFalse(result, "Growing should not be able to handle an object not implementing IGrowable.");
+        }
+
+        [Test]
+        public void Apply_WithIGrowableObject_ReturnsTrue()
+        {
+            const long AGE_BEFORE_GROWING = 5;
+
+            TestGrowable growable = new TestGrowable();
+            growable.Age = AGE_BEFORE_GROWING;
+
+            growing.Apply(growable, null);
+
+            Assert.AreEqual(growable.Age, AGE_BEFORE_GROWING + 1, "Object implementing IGrowable should add 1 age for every time.");
         }
     }
 }
