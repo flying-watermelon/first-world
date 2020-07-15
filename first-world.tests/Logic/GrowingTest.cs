@@ -28,7 +28,7 @@ namespace FirstWorld.Logic
 
             bool result = growing.CanApply(growable, null);
 
-            Assert.IsTrue(result);
+            Assert.IsTrue(result, "Growing should be able to handle an object implementing IGrowable.");
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace FirstWorld.Logic
 
             bool result = growing.CanApply(nongrowable, null);
 
-            Assert.IsFalse(result);
+            Assert.IsFalse(result, "Growing should not be able to handle an object not implementing IGrowable.");
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace FirstWorld.Logic
 
             growing.Apply(growable, null);
 
-            Assert.AreEqual(growable.Age, AGE_BEFORE_GROWING + 1);
+            Assert.AreEqual(growable.Age, AGE_BEFORE_GROWING + 1, "The age of IGrowable should be increased by 1 after growing.");
         }
     }
 }
