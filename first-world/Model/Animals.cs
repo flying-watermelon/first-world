@@ -3,7 +3,7 @@ using FirstWorld.Logic;
 
 namespace FirstWorld.Model
 {
-    public class Animal : IObject, IGrowable, IDieable, IBreedable
+    public class Animal : IObject, IAgeable, IBreedable
     {
         public Vector3 Position { set; get; }
         public long Age { set; get; }

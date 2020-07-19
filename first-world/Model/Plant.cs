@@ -4,7 +4,7 @@ using FirstWorld.Logic;
 
 namespace FirstWorld.Model
 {
-    public class Plant : IObject, IGrowable, IDieable, IBreedable
+    public class Plant : IObject, IAgeable, IBreedable
     {
         public Vector3 Position { set; get; }
         public long Age { set; get; }
