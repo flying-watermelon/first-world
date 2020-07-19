@@ -46,9 +46,11 @@ namespace FirstWorld.Logic
         public void Apply_WithIAgeableObject_ReturnsTrue()
         {
             const long AGE_BEFORE_AGEING = 5;
+            const long MAX_AGE = 10;
 
             TestAgeable ageable = new TestAgeable();
             ageable.Age = AGE_BEFORE_AGEING;
+            ageable.MaxAge = MAX_AGE;
 
             aging.Apply(ageable, null);
 
