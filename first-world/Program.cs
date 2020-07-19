@@ -11,10 +11,8 @@ namespace FirstWorld
         {
             World world = new World();
 
-            Growing aging = new Growing();
+            Aging aging = new Aging();
             Breeding breeding = new Breeding();
-            Dying dying = new Dying();
-            world.Laws.Add(dying);
             world.Laws.Add(aging);
             world.Laws.Add(breeding);
 
