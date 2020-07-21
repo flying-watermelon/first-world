@@ -1,3 +1,4 @@
+using System.Reflection;
 using System;
 using NUnit.Framework;
 using FirstWorld.Model;
@@ -15,20 +16,7 @@ namespace FirstWorld.Logic
         public float ChildSpreadingRadius { set; get; }
         public IObject Breed()
         {
-            // Random rand = new Random();
-            // float positionAngle = Convert.ToSingle(rand.NextDouble() * Math.PI);
-            // float positionRadius = Convert.ToSingle(rand.NextDouble());
-
-            Plant child = new Plant();
-            // child.Position = new Vector3(
-            //     (float)(Position.X + Math.Sin(positionAngle) * ChildSpreadingRadius * positionRadius),
-            //     (float)(Position.Y + Math.Cos(positionAngle) * ChildSpreadingRadius * positionRadius),
-            //     0.0f);
-            // child.Age = 0;
-            // child.MaxBreedingNumber = MaxBreedingNumber;
-            // child.BreedingAge = BreedingAge;
-            // child.BreedingPeriod = BreedingPeriod;
-            // child.ChildSpreadingRadius = ChildSpreadingRadius;
+            TestBreedable child = new TestBreedable();
             return child;
         }
     }
@@ -50,16 +38,35 @@ namespace FirstWorld.Logic
         public void CanApply_WithIBreedableObject_ReturnsTrue()
         {
             TestBreedable breedable = new TestBreedable();
-            breedable.Age = 25;
-            breedable.BreedingAge = 20;
-            breedable.BreedingPeriod = 5;
+            const long CURRENT_AGE = 25;
+            const long BREEDING_AGE = 20;
+            const long BREEDING_PERIOD = 5;
+            breedable.Age = CURRENT_AGE;
+            breedable.BreedingAge = BREEDING_AGE;
+            breedable.BreedingPeriod = BREEDING_PERIOD;
             bool result = breeding.CanApply(breedable, null);
             Assert.IsTrue(result, "breeding should be able to handle an object implementing IBreedable.");
         }
+
         [Test]
         public void CanNotApply_WithNonIBreedableObject_ReturnsFalse()
         {
-            // TODO: fix this test
+            TestNonBreedable nonBreedable = new TestNonBreedable();
+            bool result = breeding.CanApply(nonBreedable, null);
+            Assert.IsFalse(result, "breeding should not be able to handle an object not implementing IBreedable.");
+        }
+
+        [Test]
+        public void Apply_WithIBreedableObject_ReturnsTrue()
+        {
+            TestBreedable breedable = new TestBreedable();
+            const long CURRENT_AGE = 25;
+            const long BREEDING_AGE = 20;
+            const long BREEDING_PERIOD = 5;
+            breedable.Age = CURRENT_AGE;
+            breedable.BreedingAge = BREEDING_AGE;
+            breedable.BreedingPeriod = BREEDING_PERIOD;
+            Assert.IsTrue(breeding.Apply(breedable, null) is TestBreedable, "breeded child should be the same class with parent");
         }
     }
 }
