@@ -78,7 +78,7 @@ namespace FirstWorld.Logic
             breedable.BreedingPeriod = BREEDING_PERIOD;
             breedable.MaxBreedingNumber = MAX_BREED_NUMBER;
             breeding.Apply(breedable, world); 
-            /*Assert.DoesNotThrow() is redundant */
+            Assert.Pass();
         }
     }
 }
