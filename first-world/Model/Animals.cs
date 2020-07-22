@@ -11,7 +11,6 @@ namespace FirstWorld.Model
         public int MaxBreedingNumber { set; get; }
         public long BreedingAge { set; get; }
         public long BreedingPeriod { set; get; }
-        public float ChildSpreadingRadius { set; get; }
         public IObject Breed()
         {
             Animal child = new Animal();
@@ -21,7 +20,6 @@ namespace FirstWorld.Model
             child.MaxBreedingNumber = MaxBreedingNumber;
             child.BreedingAge = BreedingAge;
             child.BreedingPeriod = BreedingPeriod;
-            child.ChildSpreadingRadius = ChildSpreadingRadius;
 
             return child;
         }
