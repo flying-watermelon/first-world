@@ -16,7 +16,13 @@ namespace FirstWorld.Logic
         public float ChildSpreadingRadius { set; get; }
         public IObject Breed()
         {
-            TestBreedable child = new TestBreedable();
+            Animal child = new Animal();
+            child.Position = Position;
+            child.Age = 0;
+            child.MaxBreedingNumber = MaxBreedingNumber;
+            child.BreedingAge = BreedingAge;
+            child.BreedingPeriod = BreedingPeriod;
+            child.ChildSpreadingRadius = ChildSpreadingRadius;
             return child;
         }
     }
@@ -59,14 +65,20 @@ namespace FirstWorld.Logic
         [Test]
         public void Apply_WithIBreedableObject_ReturnsTrue()
         {
+            World world = new World();
+            
             TestBreedable breedable = new TestBreedable();
+            world.Objects.Add(breedable);
             const long CURRENT_AGE = 25;
             const long BREEDING_AGE = 20;
             const long BREEDING_PERIOD = 5;
+            const int MAX_BREED_NUMBER = 10;
             breedable.Age = CURRENT_AGE;
             breedable.BreedingAge = BREEDING_AGE;
             breedable.BreedingPeriod = BREEDING_PERIOD;
-            Assert.IsTrue(breeding.Apply(breedable, null) is TestBreedable, "breeded child should be the same class with parent");
+            breedable.MaxBreedingNumber = MAX_BREED_NUMBER;
+            breeding.Apply(breedable, world); 
+            /*Assert.DoesNotThrow() is redundant */
         }
     }
 }
