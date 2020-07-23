@@ -13,6 +13,8 @@ namespace FirstWorld.Model
         public long BreedingAge { set; get; }
         public long BreedingPeriod { set; get; }
         public float ChildSpreadingRadius { set; get; }
+        public int BreedingAgeVariation { set; get; }
+        public int MaxAgeVariation { set; get; }
         public IObject Breed()
         {
             Random rand = new Random();
@@ -25,9 +27,9 @@ namespace FirstWorld.Model
                 (float)(Position.Y + Math.Cos(positionAngle) * ChildSpreadingRadius * positionRadius),
                 0.0f);
             child.Age = 0;
-            child.MaxAge = MaxAge * (rand.Next(95,105)/100);
+            child.MaxAge = rand.Next((int)MaxAge - MaxAgeVariation, (int)MaxAge + MaxAgeVariation) ;
             child.MaxBreedingNumber = MaxBreedingNumber;
-            child.BreedingAge = BreedingAge * (rand.Next(95,105)/100);
+            child.BreedingAge = rand.Next((int)BreedingAge - BreedingAgeVariation, (int)BreedingAge + BreedingAgeVariation);
             child.BreedingPeriod = BreedingPeriod;
             child.ChildSpreadingRadius = ChildSpreadingRadius;
 
