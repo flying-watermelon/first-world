@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using FirstWorld.Logic;
 
@@ -14,12 +15,13 @@ namespace FirstWorld.Model
         public float ChildSpreadingRadius { set; get; }
         public IObject Breed()
         {
+            Random rand = new Random();
             Animal child = new Animal();
             child.Position = Position;
             child.Age = 0;
-            child.MaxAge = MaxAge;
+            child.MaxAge = MaxAge * (rand.Next(95,105)/100);
             child.MaxBreedingNumber = MaxBreedingNumber;
-            child.BreedingAge = BreedingAge;
+            child.BreedingAge = BreedingAge * (rand.Next(95,105)/100);
             child.BreedingPeriod = BreedingPeriod;
             child.ChildSpreadingRadius = ChildSpreadingRadius;
 
