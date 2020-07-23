@@ -66,10 +66,10 @@ namespace FirstWorld.Logic
         public void Apply_WithIBreedableObject_ReturnsTrue()
         {
             World world = new World();
-            string oldWorld =world.Objects.Count.ToString();
             
             TestBreedable breedable = new TestBreedable();
             world.Objects.Add(breedable);
+            int oldWorldAmount = world.Objects.Count;
             const long CURRENT_AGE = 25;
             const long BREEDING_AGE = 20;
             const long BREEDING_PERIOD = 5;
@@ -79,8 +79,9 @@ namespace FirstWorld.Logic
             breedable.BreedingPeriod = BREEDING_PERIOD;
             breedable.MaxBreedingNumber = MAX_BREED_NUMBER;
             breeding.Apply(breedable, world); 
-            string newWorld =world.Objects.Count.ToString();
-            Assert.AreNotEqual(oldWorld,newWorld,"number of objects in should be changed after breeding");
+            int newWorldAmount = world.Objects.Count;
+            bool breedingSucceed = MAX_BREED_NUMBER>=(newWorldAmount-oldWorldAmount) && (newWorldAmount-oldWorldAmount)>=1;
+            Assert.IsTrue(breedingSucceed, "number of breeded objects should be in range [1,MAX_BREED_NUMBER]");
         }
     }
 }
