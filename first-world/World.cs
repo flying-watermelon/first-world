@@ -6,25 +6,21 @@ namespace FirstWorld
 {
     public class World
     {
-        public IList<IObject> Objects { get; private set; }
-        public IList<ILaw> Laws { get; private set; }
+        public ICollection<IObject> Objects { get; private set; }
+        public ICollection<ILaw> Laws { get; private set; }
 
         public World()
         {
-            Objects = new List<IObject>();
+            Objects = new LinkedList<IObject>();
             Laws = new List<ILaw>();
 
         }
 
         public void Start()
         {
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < 750; i++)
             {
-                System.Console.WriteLine("Current time: " + i);
-                System.Console.WriteLine("Current object count: " + Objects.Count);
-
-                List<IObject> objectsSnapshot = new List<IObject>(Objects);
-                foreach (IObject obj in objectsSnapshot)
+                foreach (IObject obj in new List<IObject>(Objects))
                 {
                     foreach (ILaw law in Laws)
                     {

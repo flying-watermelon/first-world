@@ -12,8 +12,6 @@ namespace FirstWorld.Logic
         int MaxBreedingNumber { get; }
         long BreedingAge { get; }
         long BreedingPeriod { get; }
-        Vector3 Position { get; }
-        float ChildSpreadingRadius { get; }
         IObject Breed();
     }
 }
