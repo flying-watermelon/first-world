@@ -8,10 +8,10 @@ namespace FirstWorld.Logic
 {
     class TestBreedable : IObject, IBreedable
     {
-        public long Age { set; get; }
+        public int Age { set; get; }
         public int MaxBreedingNumber { set; get; }
-        public long BreedingAge { set; get; }
-        public long BreedingPeriod { set; get; }
+        public int BreedingAge { set; get; }
+        public int BreedingPeriod { set; get; }
         public Vector3 Position { set; get; }
         public float ChildSpreadingRadius { set; get; }
         public IObject Breed()
@@ -38,9 +38,9 @@ namespace FirstWorld.Logic
         public void CanApply_WithIBreedableObject_ReturnsTrue()
         {
             TestBreedable breedable = new TestBreedable();
-            const long CURRENT_AGE = 25;
-            const long BREEDING_AGE = 20;
-            const long BREEDING_PERIOD = 5;
+            const int CURRENT_AGE = 25;
+            const int BREEDING_AGE = 20;
+            const int BREEDING_PERIOD = 5;
             breedable.Age = CURRENT_AGE;
             breedable.BreedingAge = BREEDING_AGE;
             breedable.BreedingPeriod = BREEDING_PERIOD;
@@ -59,9 +59,9 @@ namespace FirstWorld.Logic
         [Test]
         public void Apply_WithIBreedableObject_ReturnsBreeded()
         {
-            const long CURRENT_AGE = 25;
-            const long BREEDING_AGE = 20;
-            const long BREEDING_PERIOD = 5;
+            const int CURRENT_AGE = 25;
+            const int BREEDING_AGE = 20;
+            const int BREEDING_PERIOD = 5;
             const int MAX_BREED_NUMBER = 10;
             TestBreedable breedable = new TestBreedable();
             World world = new World();

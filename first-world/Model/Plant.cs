@@ -7,11 +7,11 @@ namespace FirstWorld.Model
     public class Plant : IObject, IAgeable, IBreedable
     {
         public Vector3 Position { set; get; }
-        public long Age { set; get; }
-        public long MaxAge { set; get; }
+        public int Age { set; get; }
+        public int MaxAge { set; get; }
         public int MaxBreedingNumber { set; get; }
-        public long BreedingAge { set; get; }
-        public long BreedingPeriod { set; get; }
+        public int BreedingAge { set; get; }
+        public int BreedingPeriod { set; get; }
         public float ChildSpreadingRadius { set; get; }
         public int BreedingAgeVariation { set; get; }
         public int MaxAgeVariation { set; get; }

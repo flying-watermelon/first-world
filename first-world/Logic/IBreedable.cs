@@ -8,10 +8,10 @@ namespace FirstWorld.Logic
 {
     public interface IBreedable
     {
-        long Age { get; }
+        int Age { get; }
         int MaxBreedingNumber { get; }
-        long BreedingAge { get; }
-        long BreedingPeriod { get; }
+        int BreedingAge { get; }
+        int BreedingPeriod { get; }
         Vector3 Position { get; }
         float ChildSpreadingRadius { get; }
         IObject Breed();

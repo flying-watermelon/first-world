@@ -5,8 +5,8 @@ namespace FirstWorld.Logic
 {
     class TestAgeable : IObject, IAgeable
     {
-        public long Age { get; set; }
-        public long MaxAge { get; set; }
+        public int Age { get; set; }
+        public int MaxAge { get; set; }
     }
 
     class TestNonAgeable : IObject { }
@@ -45,8 +45,8 @@ namespace FirstWorld.Logic
         [Test]
         public void Apply_WithIAgeableObject_ReturnsTrue()
         {
-            const long AGE_BEFORE_AGEING = 5;
-            const long MAX_AGE = 10;
+            const int AGE_BEFORE_AGEING = 5;
+            const int MAX_AGE = 10;
 
             TestAgeable ageable = new TestAgeable();
             ageable.Age = AGE_BEFORE_AGEING;
