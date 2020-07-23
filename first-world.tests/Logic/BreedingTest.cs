@@ -1,5 +1,5 @@
-using System.Reflection;
 using System;
+using System.Reflection;
 using NUnit.Framework;
 using FirstWorld.Model;
 using System.Numerics;
@@ -16,13 +16,7 @@ namespace FirstWorld.Logic
         public float ChildSpreadingRadius { set; get; }
         public IObject Breed()
         {
-            Animal child = new Animal();
-            child.Position = Position;
-            child.Age = 0;
-            child.MaxBreedingNumber = MaxBreedingNumber;
-            child.BreedingAge = BreedingAge;
-            child.BreedingPeriod = BreedingPeriod;
-            child.ChildSpreadingRadius = ChildSpreadingRadius;
+            TestBreedable child = new TestBreedable();
             return child;
         }
     }
@@ -55,7 +49,7 @@ namespace FirstWorld.Logic
         }
 
         [Test]
-        public void CanNotApply_WithNonIBreedableObject_ReturnsFalse()
+        public void CanApply_WithNonIBreedableObject_ReturnsFalse()
         {
             TestNonBreedable nonBreedable = new TestNonBreedable();
             bool result = breeding.CanApply(nonBreedable, null);
@@ -63,25 +57,25 @@ namespace FirstWorld.Logic
         }
 
         [Test]
-        public void Apply_WithIBreedableObject_ReturnsTrue()
+        public void Apply_WithIBreedableObject_ReturnsBreeded()
         {
-            World world = new World();
-            
-            TestBreedable breedable = new TestBreedable();
-            world.Objects.Add(breedable);
-            int oldWorldAmount = world.Objects.Count;
             const long CURRENT_AGE = 25;
             const long BREEDING_AGE = 20;
             const long BREEDING_PERIOD = 5;
             const int MAX_BREED_NUMBER = 10;
+            TestBreedable breedable = new TestBreedable();
+            World world = new World();
+            world.Objects.Add(breedable);
+            int oldWorldAmount = world.Objects.Count;
+
             breedable.Age = CURRENT_AGE;
             breedable.BreedingAge = BREEDING_AGE;
             breedable.BreedingPeriod = BREEDING_PERIOD;
             breedable.MaxBreedingNumber = MAX_BREED_NUMBER;
-            breeding.Apply(breedable, world); 
+            breeding.Apply(breedable, world);
             int newWorldAmount = world.Objects.Count;
-            bool breedingSucceed = MAX_BREED_NUMBER>=(newWorldAmount-oldWorldAmount) && (newWorldAmount-oldWorldAmount)>=1;
-            Assert.IsTrue(breedingSucceed, "number of breeded objects should be in range [1,MAX_BREED_NUMBER]");
+            bool breeded = MAX_BREED_NUMBER>=(newWorldAmount-oldWorldAmount) && (newWorldAmount-oldWorldAmount)>=1;
+            Assert.IsTrue(breeded, "number of breeded objects should be in range [1,MAX_BREED_NUMBER]");
         }
     }
 }
