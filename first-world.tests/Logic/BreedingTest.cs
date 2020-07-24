@@ -3,6 +3,7 @@ using System.Reflection;
 using NUnit.Framework;
 using FirstWorld.Model;
 using System.Numerics;
+using System.Collections.Generic;
 
 namespace FirstWorld.Logic
 {
@@ -14,9 +15,12 @@ namespace FirstWorld.Logic
         public int BreedingPeriod { set; get; }
         public Vector3 Position { set; get; }
         public float ChildSpreadingRadius { set; get; }
+        public IList<IObject> newChilds { get; private set; }
         public IObject Breed()
         {
+            newChilds = new List<IObject>();
             TestBreedable child = new TestBreedable();
+            newChilds.Add(child);
             return child;
         }
     }
@@ -64,21 +68,21 @@ namespace FirstWorld.Logic
             const int BREEDING_PERIOD = 5;
             const int MAX_BREED_NUMBER = 10;
             TestBreedable breedable = new TestBreedable();
-            World world = new World();
-            world.Objects.Add(breedable);
-            int oldWorldAmount = world.Objects.Count;
-
             breedable.Age = CURRENT_AGE;
             breedable.BreedingAge = BREEDING_AGE;
             breedable.BreedingPeriod = BREEDING_PERIOD;
             breedable.MaxBreedingNumber = MAX_BREED_NUMBER;
-            breeding.Apply(breedable, world);
-            int newWorldAmount = world.Objects.Count;
-            bool breeded = MAX_BREED_NUMBER>=(newWorldAmount-oldWorldAmount) && (newWorldAmount-oldWorldAmount)>=1;
-            Assert.IsTrue(breeded, "number of breeded objects should be in range [1,MAX_BREED_NUMBER]");
 
-            bool contains = world.Objects.Contains(breedable.Breed());
-            Assert.IsTrue(contains, "world contains childs");
+            World world = new World();
+            world.Objects.Add(breedable);
+
+            breeding.Apply(breedable, world);
+            
+            for (int i = 0; i < breedable.newChilds.Count; i++)
+            {
+                bool contains = world.Objects.Contains(breedable.newChilds[i]);
+                Assert.IsTrue(contains, "world should contains all new childs of this generation");
+            }
         }
     }
 }
