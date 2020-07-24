@@ -14,7 +14,10 @@ namespace FirstWorld.Logic
         public int BreedingPeriod { set; get; }
         public Vector3 Position { set; get; }
         public float ChildSpreadingRadius { set; get; }
-        public IList<IObject> newChilds = new List<IObject>();
+        public IList<IObject> newChilds { set; get; }
+        public TestBreedable(){
+            newChilds = new List<IObject>();
+        }
         public IObject Breed()
         {
             TestBreedable child = new TestBreedable();
