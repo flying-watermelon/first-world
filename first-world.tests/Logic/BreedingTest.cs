@@ -76,6 +76,9 @@ namespace FirstWorld.Logic
             int newWorldAmount = world.Objects.Count;
             bool breeded = MAX_BREED_NUMBER>=(newWorldAmount-oldWorldAmount) && (newWorldAmount-oldWorldAmount)>=1;
             Assert.IsTrue(breeded, "number of breeded objects should be in range [1,MAX_BREED_NUMBER]");
+
+            bool contains = world.Objects.Contains(breedable.Breed());
+            Assert.IsTrue(contains, "world contains childs");
         }
     }
 }
