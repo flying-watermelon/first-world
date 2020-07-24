@@ -1,5 +1,4 @@
 using System;
-using System.Reflection;
 using NUnit.Framework;
 using FirstWorld.Model;
 using System.Numerics;
@@ -15,10 +14,9 @@ namespace FirstWorld.Logic
         public int BreedingPeriod { set; get; }
         public Vector3 Position { set; get; }
         public float ChildSpreadingRadius { set; get; }
-        public IList<IObject> newChilds { get; private set; }
+        public IList<IObject> newChilds = new List<IObject>();
         public IObject Breed()
         {
-            newChilds = new List<IObject>();
             TestBreedable child = new TestBreedable();
             newChilds.Add(child);
             return child;
@@ -75,13 +73,16 @@ namespace FirstWorld.Logic
 
             World world = new World();
             world.Objects.Add(breedable);
-
+            int oldWorldAmount = world.Objects.Count;
             breeding.Apply(breedable, world);
-            
+            int newWorldAmount = world.Objects.Count;
+            bool breededAmountRight = MAX_BREED_NUMBER>=(newWorldAmount-oldWorldAmount) && (newWorldAmount-oldWorldAmount)>=1;
+            Assert.IsTrue(breededAmountRight, "number of breeded objects should be in range [1,MAX_BREED_NUMBER]");
+
             for (int i = 0; i < breedable.newChilds.Count; i++)
             {
-                bool contains = world.Objects.Contains(breedable.newChilds[i]);
-                Assert.IsTrue(contains, "world should contains all new childs of this generation");
+            bool contains = world.Objects.Contains(breedable.newChilds[i]);
+            Assert.IsTrue(contains, "world should contains all new childs of this generation");
             }
         }
     }
